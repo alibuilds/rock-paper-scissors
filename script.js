@@ -28,9 +28,32 @@ function getHumanChoice() {
     return choice;
 }
 
-console.log(getHumanChoice());
-
 // Declare score variables in the global scope
 let humanScore = 0;
 let computerScore = 0;
 
+function playRound(humanChoice, computerChoice) {
+
+    // Determine the winner and update scores
+    if (humanChoice === computerChoice) {
+        console.log("It's a tie! Both chose " + humanChoice);
+    } else if (
+        (humanChoice === "rock" && computerChoice === "scissors") ||
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissors" && computerChoice === "paper")
+    ) {
+        humanScore++; // Increment human's score
+        console.log("You win! " + humanChoice + " beats " + computerChoice);
+    } else {
+        computerScore++; // Increment computer's score
+        console.log("You lose! " + computerChoice + " beats " + humanChoice);
+    }
+
+    // Log the current score after the round
+    console.log("Current score - Human: " + humanScore + ", Computer: " + computerScore);
+}
+
+// Test
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+playRound(humanSelection, computerSelection);
