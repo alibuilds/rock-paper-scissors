@@ -29,3 +29,8 @@ function getHumanChoice() {
 }
 
 console.log(getHumanChoice());
+
+// Declare score variables in the global scope
+let humanScore = 0;
+let computerScore = 0;
+
