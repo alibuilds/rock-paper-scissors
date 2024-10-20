@@ -21,19 +21,7 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    // Prompt the user for their choice
-    let choice = prompt("Please enter your choice: rock, paper, or scissors");
-
-    choice = choice.toLowerCase();
-
-    // Check if the input is valid, if not, prompt again
-    while (choice !== "rock" && choice !== "paper" && choice !== "scissors") {
-        choice = prompt("Invalid choice. Please enter rock, paper, or scissors").toLowerCase();
-    }
-
-    return choice;
-}
+// Removed the getHumanChoice function as it is no longer needed
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
@@ -84,3 +72,8 @@ function playGame() {
 
 // Call playGame to start the 5 rounds
 playGame();
+
+// Event listeners for buttons
+document.getElementById("rock").addEventListener("click", () => playGame("rock"));
+document.getElementById("paper").addEventListener("click", () => playGame("paper"));
+document.getElementById("scissors").addEventListener("click", () => playGame("scissors"));
