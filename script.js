@@ -2,6 +2,11 @@
 let humanScore = 0;
 let computerScore = 0;
 
+// Get references to HTML elements for score and result display
+const humanScoreDisplay = document.getElementById("human-score");
+const computerScoreDisplay = document.getElementById("computer-score");
+const resultMessage = document.getElementById("result-message");
+
 function getComputerChoice() {
     // Generate a random number between 0 and 2
     let randomNumber = Math.floor(Math.random() * 3);
