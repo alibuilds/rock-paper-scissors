@@ -1,3 +1,7 @@
+// Declare score variables globally
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     // Generate a random number between 0 and 2
     let randomNumber = Math.floor(Math.random() * 3);
@@ -45,25 +49,20 @@ function playRound(humanChoice, computerChoice) {
 
 // New playGame function that handles 5 rounds of play
 function playGame() {
-    // Declare score variables in the scope of playGame
-    let humanScore = 0;
-    let computerScore = 0;
 
-    // Play 5 rounds
-    for (let i = 0; i < 5; i++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        
-        const roundResult = playRound(humanSelection, computerSelection);
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+    
+    const roundResult = playRound(humanSelection, computerSelection);
 
-        // Update scores based on the result of the round
-        if (roundResult === "human") {
-            humanScore++;
-        } else if (roundResult === "computer") {
-            computerScore++;
-        }
+    // Update scores based on the result of the round
+    if (roundResult === "human") {
+        humanScore++;
+    } else if (roundResult === "computer") {
+        computerScore++;
+    }
 
-        console.log(`Round ${i + 1} score - Human: ${humanScore}, Computer: ${computerScore}`);
+    console.log(`Round ${i + 1} score - Human: ${humanScore}, Computer: ${computerScore}`);
     }
 
     // Final results after 5 rounds
