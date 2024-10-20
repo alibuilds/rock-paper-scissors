@@ -41,11 +41,9 @@ function playRound(humanChoice, computerChoice) {
 }
 
 // New playGame function that handles 5 rounds of play
-function playGame() {
+function playGame(humanSelection) {
 
-    const humanSelection = getHumanChoice();
     const computerSelection = getComputerChoice();
-    
     const roundResult = playRound(humanSelection, computerSelection);
 
     // Update scores based on the result of the round
@@ -55,23 +53,25 @@ function playGame() {
         computerScore++;
     }
 
-    console.log(`Round ${i + 1} score - Human: ${humanScore}, Computer: ${computerScore}`);
-    }
+    // Update the scoreboard in the UI
+    humanScoreDisplay.textContent = humanScore;
+    computerScoreDisplay.textContent = computerScore;
 
-    // Final results after 5 rounds
-    console.log(`Final score - Human: ${humanScore}, Computer: ${computerScore}`);
-    
-    if (humanScore > computerScore) {
-        console.log("Congratulations! You won the game.");
-    } else if (computerScore > humanScore) {
-        console.log("Sorry, you lost the game.");
-    } else {
-        console.log("It's a tie game!");
+    // Check if someone has reached 5 points 
+    if (humanScore === 5) {
+        resultMessage.textContent = "Congratulations! You won the game.";
+        disableButtons(); // Disable the buttons when the game ends
+    } else if (computerScore === 5) {
+        resultMessage.textContent = "Sorry, you lost the game.";
+        disableButtons(); // Disable the buttons when the game ends
     }
 }
 
-// Call playGame to start the 5 rounds
-playGame();
+function disableButtons() {
+    document.getElementById("rock").disabled = true;
+    document.getElementById("paper").disabled = true;
+    document.getElementById("scissors").disabled = true;
+}
 
 // Event listeners for buttons
 document.getElementById("rock").addEventListener("click", () => playGame("rock"));
