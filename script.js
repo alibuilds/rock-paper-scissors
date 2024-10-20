@@ -1,17 +1,15 @@
-// Declare score variables globally
+// Declare score variables globally for tracking the game
 let humanScore = 0;
 let computerScore = 0;
 
-// Get references to HTML elements for score and result display
+// Cache DOM elements for displaying score and results
 const humanScoreDisplay = document.getElementById("human-score");
 const computerScoreDisplay = document.getElementById("computer-score");
 const resultMessage = document.getElementById("result-message");
 
 function getComputerChoice() {
-    // Generate a random number between 0 and 2
+    // Generate a random number (0-2) and return the corresponding choice
     let randomNumber = Math.floor(Math.random() * 3);
-
-    // Return "rock", "paper", or "scissors" based on the random number
     if (randomNumber === 0) {
         return "rock";
     } else if (randomNumber === 1) {
@@ -20,8 +18,6 @@ function getComputerChoice() {
         return "scissors";
     }
 }
-
-// Removed the getHumanChoice function as it is no longer needed
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
@@ -40,13 +36,11 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-// New playGame function that handles 5 rounds of play
 function playGame(humanSelection) {
-
     const computerSelection = getComputerChoice();
     const roundResult = playRound(humanSelection, computerSelection);
 
-    // Update scores based on the result of the round
+    // Update scores based on round result
     if (roundResult === "human") {
         humanScore++;
     } else if (roundResult === "computer") {
@@ -57,17 +51,18 @@ function playGame(humanSelection) {
     humanScoreDisplay.textContent = humanScore;
     computerScoreDisplay.textContent = computerScore;
 
-    // Check if someone has reached 5 points 
+    // Check if someone has won and disable buttons if a player reaches 5 points
     if (humanScore === 5) {
         resultMessage.textContent = "Congratulations! You won the game.";
-        disableButtons(); // Disable the buttons when the game ends
+        disableButtons();
     } else if (computerScore === 5) {
         resultMessage.textContent = "Sorry, you lost the game.";
-        disableButtons(); // Disable the buttons when the game ends
+        disableButtons();
     }
 }
 
 function disableButtons() {
+    // Disable game buttons after a player wins
     document.getElementById("rock").disabled = true;
     document.getElementById("paper").disabled = true;
     document.getElementById("scissors").disabled = true;
